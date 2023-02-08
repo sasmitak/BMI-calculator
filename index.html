@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .Result {
+            position: relative;
+            background-color: #c1c1c1;
+        }
+
+        .low {
+            position: absolute;
+            bottom: 15px;
+        }
+
+        #result {
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        #out {
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: -30px;
+        }
+    </style>
+    <script type="text/javascript">
+        function CalculateClick() {
+            document.getElementById("output").style.display = "block";
+
+            var w = parseInt(document.getElementById("weight").value);
+            var h = parseFloat(document.getElementById("height").value) / 100;
+            var BMI = (w / Math.pow(h, 2));
+
+            document.getElementById("result").innerHTML = Math.round(BMI);
+
+            if (BMI <= 18) {
+                document.getElementById("out").innerHTML = "UnderWeight BMI";
+                document.getElementById("indicate").style.marginLeft = "100px";
+            }
+            else if (BMI <= 25) {
+                document.getElementById("out").innerHTML = "Normal BMI";
+                document.getElementById("indicate").style.marginLeft = "500px";
+            }
+            else if (BMI <= 30) {
+                document.getElementById("out").innerHTML = "Overweight BMI";
+                document.getElementById("indicate").style.marginLeft = "800px";
+            }
+            else {
+                document.getElementById("out").innerHTML = "Obese BMI";
+                document.getElementById("indicate").style.marginLeft = "1000px";
+            }
+
+
+        }
+    </script>
+</head>
+
+<body class="container-fluid">
+    <div class="top border border-bottom-3 border-gray mt-4 p-3">
+        <div class="bmi-logo">
+            <img src="./images/bmi.jpg">
+        </div>
+        <div class="header-text-bmi">
+            <h1 class="head1">BMI Calculator</h1>
+        </div>
+    </div>
+    <h6>Gender *</h6>
+    <div class="border border-bottom-3 border-gray mt-2 p-3 w-25">
+        <span>
+            <input type="radio" name="Gender"> Female
+            <input type="radio" name="Gender"> Male
+        </span>
+    </div>
+    <div class="mt-2">
+        <h6>Age (1 Year or Above) *</h6>
+        <input type="text" class="form-control w-25 mb-3 mt-2" id="age" placeholder="Years">
+    </div>
+    <div>
+        <h6>Height *</h6>
+        <input type="text" class="form-control w-50 mb-3 mt-2" id="height" placeholder="cm">
+    </div>
+    <div>
+        <h6>Weight *</h6>
+        <input type="text" class="form-control w-50 mb-3 mt-2" id="weight" placeholder="kg">
+    </div>
+    <div>
+        <button class="btn mt-3 mb-4 text-dark btn-outline-info" onclick="CalculateClick()">Calculate</button>
+    </div>
+    <div class="Result row d-flex text-center" style="display:none" id="output">
+        <div class="col-3">
+            <h2 id="result" class="text-center mt-4"></h2>
+            <br>
+            <p id="out" class="text-center"><b></b></p>
+            <div class="low">
+                <font size="2">Healthy weight for the height : 50.4 kg - 67.8 kg</font>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="mt-4 d-flex">
+                <div style="width:400px" class="text-left text-muted">
+                    <p>UnderWeight <br>
+                        <b>Below 50kg</b>
+                    </p>
+                </div>
+                <div style="width:400px" class="text-center text-muted">
+                    <p>Normal <br>
+                        <b>50-68 kg</b>
+                    </p>
+                </div>
+                <div style="width:400px" class="text-center text-muted">
+                    <p>Overweight <br>
+                        <b>68-80 kg</b>
+                    </p>
+                </div>
+                <div style="width:400px" class="text-end text-secondary">
+                    <p>Obese <br>
+                        <b>Above 81 kg</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="progress">
+                <div class="progress-bar bg-dark text-white" style="width:400px">
+                      
+                </div>
+                <div class="progress-bar bg-info text-white" style="width:400px">
+                
+                </div>
+                <div class="progress-bar bg-dark text-white" style="width:400px">
+                
+                </div>
+                <div class="progress-bar bg-danger text-white" style="width:400px">
+                
+                </div>
+            </div>
+            <div>
+                <div class="mt-1 d-column" id="indicate">
+                    <span class="bi bi-caret-down-fill"></span>
+                    <p>You</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
